@@ -7,25 +7,28 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Console class"""
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def do_EOF(self, line):
-        """EOF command to exit the program"""
+        """EOF command to exit the program
+        """
         return True
 
     def do_quit(self, line):
-        """Quit command to exit the program"""
+        """Quit command to exit the program
+        """
         return True
 
     def help_help(self):
         """Help command"""
-        print("Help command for more information on existing commands")
+        print("Help command for more information on existing commands\n")
 
     def emptyline(self):
         pass
 
     def do_create(self, line):
-        """Create command to create new instance and save"""
+        """Create command to create new instance and save
+        """
         if line == "":
             print("** class name is missing **")
         elif line == "BaseModel":
@@ -36,6 +39,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
