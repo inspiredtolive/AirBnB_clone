@@ -2,7 +2,7 @@
 """Defines all attributes and methods for BaseModel"""
 import uuid
 from datetime import datetime
-from models import storage
+import models
 
 
 class BaseModel:
@@ -21,7 +21,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """Return string format of instance"""
@@ -31,7 +31,7 @@ class BaseModel:
     def save(self):
         """Update updated_at attribute with current time"""
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dict containing all key/value of __dict__ of instance"""
