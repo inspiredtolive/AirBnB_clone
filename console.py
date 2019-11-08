@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """Define all attribute and methods for console"""
 import cmd
-from models.base_model import BaseModel
-from models import storage
+from models import storage, classes
 
 
 class HBNBCommand(cmd.Cmd):
@@ -30,16 +29,26 @@ class HBNBCommand(cmd.Cmd):
         """Create command to create new instance and save
         """
         if line == "":
-            print("** class name is missing **")
-        elif line == "BaseModel":
-            new_model = BaseModel()
+            print("** class name missing **")
+        elif line in classes:
+            new_model = classes[line]()
             new_model.save()
             print(new_model.id)
         else:
             print("** class doesn't exist **")
 
     def do_show(self, line):
-        pass
+        """Show command to print string representation of instance
+        """
+        args = line.split()
+        if line == "":
+            print("** class name missing **")
+        elif args[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(args) != 2:
+            print("** instance id missing **")
+        else:
+            pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
