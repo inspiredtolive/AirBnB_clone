@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from models.base_model import BaseModel
 
+
 class FileStorage:
     """A class for object serialization using a JSON file."""
     __file_path = "file.json"
@@ -29,4 +30,6 @@ class FileStorage:
         config = Path(FileStorage.__file_path)
         if config.is_file():
             with open(FileStorage.__file_path, "r") as f:
-                FileStorage.__objects = {k: BaseModel(**v) for k, v in json.load(f).items()}
+                FileStorage.__objects = {
+                    k: BaseModel(**v) for k, v in json.load(f).items()
+                }
