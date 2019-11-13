@@ -23,7 +23,7 @@ class TestBaseModel(unittest.TestCase):
         unique_ids = set()
         for i in range(1000):
             instance = BaseModel()
-            self.assertEqual(instance.id in unique_ids, False)
+            self.assertNotIn(instance.id, unique_ids)
             unique_ids.add(instance.id)
 
     def test_created_at_type(self):
@@ -51,10 +51,31 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict_values(self):
         """Tests if to_dict() has the correct key-value pairs."""
         instance = BaseModel()
+
         new_dict = instance.__dict__.copy()
         new_dict["__class__"] = instance.__class__.__name__
         new_dict["created_at"] = instance.created_at.isoformat()
         new_dict["updated_at"] = instance.updated_at.isoformat()
+
+        self.assertIn("__class__", instance.to_dict())
+        self.assertIn("id", instance.to_dict())
+        self.assertIn("created_at", instance.to_dict())
+        self.assertIn("updated_at", instance.to_dict())
+        self.assertEqual(new_dict, instance.to_dict())
+
+    def test_to_dict_new_attrs(self):
+        """Tests if to_dict() contains added attributes."""
+        instance = BaseModel()
+        instance.name = "Holberton"
+        instance.my_number = 89
+
+        new_dict = instance.__dict__.copy()
+        new_dict["__class__"] = instance.__class__.__name__
+        new_dict["created_at"] = instance.created_at.isoformat()
+        new_dict["updated_at"] = instance.updated_at.isoformat()
+
+        self.assertIn("name", instance.to_dict())
+        self.assertIn("my_number", instance.to_dict())
         self.assertEqual(new_dict, instance.to_dict())
 
 if __name__ == '__main__':
