@@ -26,5 +26,15 @@ class TestBaseModel(unittest.TestCase):
             self.assertEqual(instance.id in unique_ids, False)
             unique_ids.add(instance.id)
 
+    def test_created_at_type(self):
+        """Tests if created_at is a datetime instance."""
+        instance = BaseModel()
+        self.assertEqual(type(instance.created_at), datetime)
+
+    def test_updated_at_type(self):
+        """Tests if updated_at is a datetime instance."""
+        instance = BaseModel()
+        self.assertEqual(type(instance.updated_at), datetime)
+
 if __name__ == '__main__':
     unittest.main()
