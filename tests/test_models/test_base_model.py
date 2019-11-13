@@ -36,5 +36,12 @@ class TestBaseModel(unittest.TestCase):
         instance = BaseModel()
         self.assertEqual(type(instance.updated_at), datetime)
 
+    def test_str(self):
+        """Tests if __str__ returns "[<cls name>] (<id>) <__dict__>."""""
+        instance = BaseModel()
+        expected = "[{}] ({}) {}".format(instance.__class__.__name__,
+                                         instance.id, instance.__dict__)
+        self.assertEqual(str(instance), expected)
+
 if __name__ == '__main__':
     unittest.main()
