@@ -16,7 +16,7 @@ The prompt should be "(hbnb) "
 For non-interactive mode, please use the following format:
 `echo "<cmd>" | ./console.py`
 
-The results will printout to the stdout along with your shell's prompt following after indicating the the program has exited after executing command.
+The results will print out to the stdout along with your shell's prompt following after, indicating the program has exited after executing command.
 ### Commands
 Command | Description
 --------|-------------
