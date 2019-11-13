@@ -43,5 +43,19 @@ class TestBaseModel(unittest.TestCase):
                                          instance.id, instance.__dict__)
         self.assertEqual(str(instance), expected)
 
+    def test_to_dict_type(self):
+        """Tests if to_dict() returns a dictionary."""
+        instance = BaseModel()
+        self.assertEqual(type(instance.to_dict()), dict)
+
+    def test_to_dict_values(self):
+        """Tests if to_dict() has the correct key-value pairs."""
+        instance = BaseModel()
+        new_dict = instance.__dict__.copy()
+        new_dict["__class__"] = instance.__class__.__name__
+        new_dict["created_at"] = instance.created_at.isoformat()
+        new_dict["updated_at"] = instance.updated_at.isoformat()
+        self.assertEqual(new_dict, instance.to_dict())
+
 if __name__ == '__main__':
     unittest.main()
