@@ -53,7 +53,7 @@ EOF  all  create  destroy  help  quit  show  update
 ### Release History
 * 0.1.0 - First release - 14 Nov 2019
 ## Authors
-*[Marco Chan](https://github.com/inspiredtolive)
-*[Alia Vang](https://github.com/aliavang)
+* [Marco Chan](https://github.com/inspiredtolive)
+* [Alia Vang](https://github.com/aliavang)
 ## Acknowledgments
 All the wonderful people who helped us build the AirBnB_clone!
