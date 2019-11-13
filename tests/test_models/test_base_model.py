@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines a TestCase for BaseModel."""
+import os
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
@@ -13,6 +14,11 @@ class TestBaseModel(unittest.TestCase):
         self.storage = FileStorage()
         FileStorage._FileStorage__file_path = "test.json"
         self.storage.reload()
+
+    def tearDown(self):
+        """Deletes the test json file."""
+        if os.path.exists("test.json"):
+            os.remove("test.json")
 
     def test_id_string_type(self):
         """Tests if the ID is a string."""
@@ -42,6 +48,13 @@ class TestBaseModel(unittest.TestCase):
         expected = "[{}] ({}) {}".format(instance.__class__.__name__,
                                          instance.id, instance.__dict__)
         self.assertEqual(str(instance), expected)
+
+    def test_save_updated(self):
+        """Tests if save() changes updated_at."""
+        instance = BaseModel()
+        old_datetime = instance.updated_at
+        instance.save()
+        self.assertLess(old_datetime, instance.updated_at)
 
     def test_to_dict_type(self):
         """Tests if to_dict() returns a dictionary."""
