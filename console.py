@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split(".")
         line = args[0]
-        if args[0] in classes:
+        if line in classes:
             if args[1] == "all()":
                 all = getattr(self, 'do_all')
                 all(line)
@@ -132,6 +132,14 @@ class HBNBCommand(cmd.Cmd):
                 line = line + " " + id
                 destroy = getattr(self, 'do_destroy')
                 destroy(line)
+            elif args[1].startswith('update(') and args[1].endswith(')'):
+                args[1] = args[1][7:-1]
+                args = args[1].split(", ")
+                for i in range(min(len(args), 2)):
+                    args[i] = eval(args[i])
+                line += " " +  " ".join(args)
+                update = getattr(self, 'do_update')
+                update(line)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
