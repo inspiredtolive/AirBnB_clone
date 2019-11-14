@@ -106,5 +106,15 @@ class HBNBCommand(cmd.Cmd):
             setattr(instance, args[2], args[3])
             instance.save()
 
+    def default(self, line):
+        """Method to handle cases in which command usage is different format
+        """
+        args = line.split(".")
+        line = args[0]
+        if args[0] in classes:
+            if args[1] == "all()":
+                all = getattr(self, 'do_' + 'all')
+                all(line)
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
