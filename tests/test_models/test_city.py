@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Test cases for City class."""
 import unittest
+from models.base_model import BaseModel
 from models.city import City
 
 
@@ -19,3 +20,8 @@ class TestCity(unittest.TestCase):
         self.assertEqual(hasattr(instance, "name"), True)
         self.assertIs(type(instance.name), str)
         self.assertEqual(instance.name, "")
+
+    def test_inherits_BaseModel(self):
+        """Tests if City inherits from BaseModel."""
+        instance = City()
+        self.assertIsInstance(instance, BaseModel)

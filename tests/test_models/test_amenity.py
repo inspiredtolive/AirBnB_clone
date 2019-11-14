@@ -12,3 +12,8 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(hasattr(instance, "name"), True)
         self.assertIs(type(instance.name), str)
         self.assertEqual(instance.name, "")
+
+    def test_inherits_BaseModel(self):
+        """Tests if Amenity inherits from BaseModel."""
+        instance = Amenity()
+        self.assertIsInstance(instance, BaseModel)
