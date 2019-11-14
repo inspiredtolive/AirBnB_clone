@@ -115,6 +115,13 @@ class HBNBCommand(cmd.Cmd):
             if args[1] == "all()":
                 all = getattr(self, 'do_' + 'all')
                 all(line)
+            elif args[1] == "count()":
+                count = 0
+                for k in storage.all().keys():
+                    key = k.split(".")
+                    if key[0] == line:
+                        count += 1
+                print(count)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
