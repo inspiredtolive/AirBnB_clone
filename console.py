@@ -113,7 +113,7 @@ class HBNBCommand(cmd.Cmd):
         line = args[0]
         if args[0] in classes:
             if args[1] == "all()":
-                all = getattr(self, 'do_' + 'all')
+                all = getattr(self, 'do_all')
                 all(line)
             elif args[1] == "count()":
                 count = 0
@@ -122,6 +122,11 @@ class HBNBCommand(cmd.Cmd):
                     if key[0] == line:
                         count += 1
                 print(count)
+            elif args[1].startswith('show("') and args[1].endswith('")'):
+                id = args[1][6:-2]
+                line = line + " " + id
+                show = getattr(self, 'do_show')
+                show(line)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
