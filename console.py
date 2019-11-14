@@ -127,6 +127,11 @@ class HBNBCommand(cmd.Cmd):
                 line = line + " " + id
                 show = getattr(self, 'do_show')
                 show(line)
+            elif args[1].startswith('destroy("') and args[1].endswith('")'):
+                id = args[1][9:-2]
+                line = line + " " + id
+                destroy = getattr(self, 'do_destroy')
+                destroy(line)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
