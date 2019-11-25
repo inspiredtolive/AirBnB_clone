@@ -10,4 +10,5 @@ body {
   position: relative;
   max-width: 1000px;
   margin: 30px auto;
+  padding-bottom: 60px;
 }
